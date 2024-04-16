@@ -8,10 +8,9 @@ export default {
 
             query:db.query,
             api: db.apiKey,
-            titles: [],
-            originalTitles: [],
-            languages: [],
-            votes: [],
+            movie:db.film,
+            tvSeries:db.serieTv
+            
 
         }
     },
@@ -26,32 +25,56 @@ export default {
                         query: this.query
                     }
                 }).then((res) => {
+                
                     for (let i = 0; i < res.data.results.length; i++) {
                     //console.log(res.data.results)
-                    let results = res.data.results[i]
-
-
-
-
-                    this.titles.push(results.title)
-                    this.originalTitles.push(results.original_title)
-                    this.languages.push(results.original_language)
-                    this.votes.push(results.vote_count)
-
+                     let results = res.data.results[i]
+                        let title = results.title
+                        let originalTitle = results.original_title
+                        let language = results.original_language
+                        let vote = results.vote_count
+                        this.movie.push({title,originalTitle,language,vote})
 
                     }
+                    //  this.titles.push(results.title)
+                    //  this.originalTitles.push(results.original_title)
+                    //  this.languages.push(results.original_language)
+                    //  this.votes.push(results.vote_count)
+
+                    console.log(this.movie)
+                    // }
 
                 })
+
+                axios.get('https://api.themoviedb.org/3/search/tv',{
+                    params:
+                    {
+                        api_key: this.api,
+                        query: this.query
+                    }
+                }).then((resTv) =>{
+                    for (let i = 0; i < resTv.data.results.length; i++) {
+                    
+                     let results = resTv.data.results[i]
+                        let title = results.name
+                        let originalTitle = results.original_name
+                        let language = results.original_language
+                        let vote = results.vote_count
+                        this.tvSeries.push({title,originalTitle,language,vote})
+
+                    }
+                    console.log(this.tvSeries)
+                })
            
-            console.log('Titoli', this.titles)
-            console.log('Titoli originali', this.originalTitles)
-            console.log('Lingua', this.languages)
-            console.log('Voti', this.votes)
-            this.query = db.query
-            this.titles = []
-            this.originalTitles =[]
-            this.languages =[]
-            this.votes = []
+            //console.log('Titoli', this.titles)
+            //console.log('Titoli originali', this.originalTitles)
+            //console.log('Lingua', this.languages)
+            //console.log('Voti', this.votes)
+            // this.query = db.query
+            // this.titles = []
+            // this.originalTitles =[]
+            // this.languages =[]
+            // this.votes = []
         }
     },
     mounted() {
@@ -65,7 +88,7 @@ export default {
     <div>
         <input type="text" v-model="query">
         <button @click="getResponse()">Cerca</button>
-        <ul>
+        <!--<ul>
         <li><h1>titoli</h1></li>
         <li v-for="title in titles">{{ title }}</li>
         <li><h1>titoli originali</h1></li>
@@ -74,7 +97,7 @@ export default {
         <li v-for="language in languages">{{ language }}</li>
         <li><h1>voti</h1></li>
         <li v-for="vote in votes">{{ vote }}</li>
-        </ul>
+        </ul>-->
     </div>
 </template>
 
