@@ -1,16 +1,16 @@
-<script >
+<script>
 import HeaderComponent from './components/HeaderComponent.vue';
 import CardComponent from './components/CardComponent.vue';
-import {db} from './store.js'
+import { db } from './store.js'
 export default {
-  components:{
+  components: {
     HeaderComponent,
     CardComponent,
   },
-   data(){
-     return{
-      movies:db.film,
-      tvSeries:db.serieTv
+  data() {
+    return {
+      movies: db.film,
+      tvSeries: db.serieTv
     }
   }
 }
@@ -18,15 +18,17 @@ export default {
 </script>
 
 <template>
-  <HeaderComponent/>
+  <HeaderComponent />
   <div>
     <h1>FILM</h1>
-    <CardComponent v-for="(filmItem,i) in movies" :key="i" :filmItem="filmItem" />
+    <ul>
+      <CardComponent v-for="(filmItem, i) in movies" :key="i" :filmItem="filmItem" />
+    </ul>
     <h1>SERIE TV</h1>
-    <!-- <CardComponent v-for="(tvSeriesItem,i) in tvSeries" :key="i" :tvSeriesItem="tvSeriesItem" />  -->
+    <ul>
+    <CardComponent v-for="(tvSeriesItem, i) in tvSeries" :key="i" :tvSeriesItem="tvSeriesItem" />
+    </ul>
   </div>
 </template>
 
-<style >
-
-</style>
+<style></style>

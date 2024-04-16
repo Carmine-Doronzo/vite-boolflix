@@ -5,12 +5,12 @@ export default {
         return {
             // movies: db.film,
             // tvSeries: db.serieTv
-            
+
         }
     },
     props: {
         filmItem: { type: Object },
-        //tvSeriesItem: { type: Object }
+        tvSeriesItem: { type: Object }
     }
 }
 </script>
@@ -26,12 +26,14 @@ export default {
     </li>
 
 
-    <!-- <ul>
-      <li>{{ tvSeriesItem.title }}</li>
-      <li>{{ tvSeriesItem.originalTitle }}</li>
-      <li>{{ tvSeriesItem.language }}</li>
-      <li>{{ tvSeriesItem.vote }}</li>
-    </ul>   -->
+
+    <li>
+        {{ tvSeriesItem.titleTv }}
+        {{ tvSeriesItem.originalTitleTv }}
+        {{ tvSeriesItem.languageTv }}
+        {{ tvSeriesItem.voteTv }}
+    </li>
+
 </template>
 
 <style lang="scss" scoped></style>
