@@ -8,10 +8,10 @@ export default {
 
             query:db.query,
             api: db.apiKey,
-            title: [],
-            originalTitle: [],
-            language: [],
-            vote: [],
+            titles: [],
+            originalTitles: [],
+            languages: [],
+            votes: [],
 
         }
     },
@@ -33,20 +33,20 @@ export default {
 
 
 
-                    this.title.push(results.title)
-                    this.originalTitle.push(results.original_title)
-                    this.language.push(results.original_language)
-                    this.vote.push(results.vote_count)
+                    this.titles.push(results.title)
+                    this.originalTitles.push(results.original_title)
+                    this.languages.push(results.original_language)
+                    this.votes.push(results.vote_count)
 
 
                     }
 
                 })
            
-            console.log('Titoli', this.title)
-            console.log('Titoli originali', this.originalTitle)
-            console.log('Lingua', this.language)
-            console.log('Voti', this.vote)
+            console.log('Titoli', this.titles)
+            console.log('Titoli originali', this.originalTitles)
+            console.log('Lingua', this.languages)
+            console.log('Voti', this.votes)
             this.query = ''
         }
     },
@@ -61,6 +61,16 @@ export default {
     <div>
         <input type="text" v-model="query">
         <button @click="getResponse()">Cerca</button>
+        <ul>
+        <li><h1>titoli</h1></li>
+        <li v-for="title in titles">{{ title }}</li>
+        <li><h1>titoli originali</h1></li>
+        <li v-for="originalTitle in originalTitles ">{{ originalTitle }}</li>
+        <li><h1>lingua</h1></li>
+        <li v-for="language in languages">{{ language }}</li>
+        <li><h1>voti</h1></li>
+        <li v-for="vote in votes">{{ vote }}</li>
+        </ul>
     </div>
 </template>
 
