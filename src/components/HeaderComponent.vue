@@ -56,11 +56,11 @@ export default {
                     for (let i = 0; i < resTv.data.results.length; i++) {
                     
                      let results = resTv.data.results[i]
-                        let title = results.name
-                        let originalTitle = results.original_name
-                        let language = results.original_language
-                        let vote = results.vote_count
-                        this.tvSeries.push({title,originalTitle,language,vote})
+                        let titleTv = results.name
+                        let originalTitleTv = results.original_name
+                        let languageTv = results.original_language
+                        let voteTv = results.vote_count
+                        this.tvSeries.push({titleTv,originalTitleTv,languageTv,voteTv})
 
                     }
                     console.log(this.tvSeries)

@@ -1,12 +1,14 @@
 <script >
 import HeaderComponent from './components/HeaderComponent.vue';
+import CardComponent from './components/CardComponent.vue';
 import {db} from './store.js'
 export default {
   components:{
-    HeaderComponent
+    HeaderComponent,
+    CardComponent,
   },
-  data(){
-    return{
+   data(){
+     return{
       movies:db.film,
       tvSeries:db.serieTv
     }
@@ -19,19 +21,9 @@ export default {
   <HeaderComponent/>
   <div>
     <h1>FILM</h1>
-    <ul v-for="movie in movies">
-      <li>{{ movie.title }}</li>
-      <li>{{ movie.originalTitle }}</li>
-      <li>{{ movie.language }}</li>
-      <li>{{ movie.vote }}</li>
-    </ul>
+    <CardComponent v-for="(filmItem,i) in movies" :key="i" :filmItem="filmItem" />
     <h1>SERIE TV</h1>
-    <ul v-for="serie in tvSeries">
-      <li>{{ serie.title }}</li>
-      <li>{{ serie.originalTitle }}</li>
-      <li>{{ serie.language }}</li>
-      <li>{{ serie.vote }}</li>
-    </ul>
+    <!-- <CardComponent v-for="(tvSeriesItem,i) in tvSeries" :key="i" :tvSeriesItem="tvSeriesItem" />  -->
   </div>
 </template>
 
