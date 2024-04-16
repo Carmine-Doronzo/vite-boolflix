@@ -55,7 +55,7 @@ export default {
                     }
                 }).then((resTv) =>{
                     for (let i = 0; i < resTv.data.results.length; i++) {
-                        console.log(resTv.data.results)
+                        console.log(resTv)
                      let results = resTv.data.results[i]
                         let titleTv = results.name
                         let originalTitleTv = results.original_name

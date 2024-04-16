@@ -16,7 +16,7 @@ export default {
 </script>
 
 <template>
-
+    <img :src="`https://image.tmdb.org/t/p/w342/${tvSeriesItem.imgPathTv}`" alt="">
 
     <!-- <li>
         {{ movies.title }}
