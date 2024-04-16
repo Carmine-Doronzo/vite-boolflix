@@ -18,7 +18,7 @@ export default {
 
     methods: {
         getResponse() {
-            
+                
                 axios.get('https://api.themoviedb.org/3/search/movie', {
                     params:
                     {
@@ -47,7 +47,11 @@ export default {
             console.log('Titoli originali', this.originalTitles)
             console.log('Lingua', this.languages)
             console.log('Voti', this.votes)
-            this.query = ''
+            this.query = db.query
+            this.titles = []
+            this.originalTitles =[]
+            this.languages =[]
+            this.votes = []
         }
     },
     mounted() {
