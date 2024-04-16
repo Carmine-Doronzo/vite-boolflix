@@ -1,16 +1,16 @@
 <script>
 //import { db } from '../store.js'
 export default {
-    data() {
-        return {
-            // movies: db.film,
-            // tvSeries: db.serieTv
+    // data() {
+    //     return {
+    //          movies: db.film,
+    //          tvSeries: db.serieTv
 
-        }
-    },
+    //     }
+    // },
     props: {
         filmItem: { type: Object },
-        tvSeriesItem: { type: Object }
+       // tvSeriesItem: { type: Object }
     }
 }
 </script>
@@ -27,13 +27,12 @@ export default {
 
 
 
-    <li>
-        {{ tvSeriesItem.titleTv }}
-        {{ tvSeriesItem.originalTitleTv }}
-        {{ tvSeriesItem.languageTv }}
-        {{ tvSeriesItem.voteTv }}
-    </li>
-
+    <!-- <li>
+        {{ tvSeries.titleTv }}
+        {{ tvSeries.originalTitleTv }}
+        {{ tvSeries.languageTv }}
+        {{ tvSeries.voteTv }}
+    </li>  -->
 </template>
 
 <style lang="scss" scoped></style>
