@@ -6,7 +6,7 @@ export default {
     data() {
         return {
 
-            query:'',
+            query:db.query,
             api: db.apiKey,
             title: [],
             originalTitle: [],
@@ -18,7 +18,7 @@ export default {
 
     methods: {
         getResponse() {
-            for (let i = 0; i < 20; i++) {
+            
                 axios.get('https://api.themoviedb.org/3/search/movie', {
                     params:
                     {
@@ -26,7 +26,7 @@ export default {
                         query: this.query
                     }
                 }).then((res) => {
-
+                    for (let i = 0; i < res.data.results.length; i++) {
                     //console.log(res.data.results)
                     let results = res.data.results[i]
 
@@ -39,14 +39,15 @@ export default {
                     this.vote.push(results.vote_count)
 
 
-
+                    }
 
                 })
-            }
+           
             console.log('Titoli', this.title)
             console.log('Titoli originali', this.originalTitle)
             console.log('Lingua', this.language)
             console.log('Voti', this.vote)
+            this.query = ''
         }
     },
     mounted() {
