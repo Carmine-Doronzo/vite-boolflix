@@ -33,7 +33,8 @@ export default {
                         let originalTitle = results.original_title
                         let language = results.original_language
                         let vote = results.vote_count
-                        this.movie.push({title,originalTitle,language,vote})
+                        let imgPath = results.poster_path
+                        this.movie.push({title,originalTitle,language,vote,imgPath})
 
                     }
                     //  this.titles.push(results.title)
@@ -41,7 +42,7 @@ export default {
                     //  this.languages.push(results.original_language)
                     //  this.votes.push(results.vote_count)
 
-                    console.log(this.movie)
+                    //console.log(this.movie)
                     // }
 
                 })
@@ -54,16 +55,17 @@ export default {
                     }
                 }).then((resTv) =>{
                     for (let i = 0; i < resTv.data.results.length; i++) {
-                    
+                        console.log(resTv.data.results)
                      let results = resTv.data.results[i]
                         let titleTv = results.name
                         let originalTitleTv = results.original_name
                         let languageTv = results.original_language
                         let voteTv = results.vote_count
-                        this.tvSeries.push({titleTv,originalTitleTv,languageTv,voteTv})
+                        let imgPathTv= results.poster_path
+                        this.tvSeries.push({titleTv,originalTitleTv,languageTv,voteTv,imgPathTv})
 
                     }
-                    console.log(this.tvSeries)
+                    //console.log(this.tvSeries)
                 })
            
             //console.log('Titoli', this.titles)
