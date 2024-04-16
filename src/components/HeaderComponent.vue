@@ -1,55 +1,59 @@
 <script>
-    import axios from 'axios';
-    import {db} from '../store.js'
-    export default {
+import axios from 'axios';
+import { db } from '../store.js'
+export default {
 
-        data(){
-            return{
+    data() {
+        return {
 
-                query:db.query,
-                api:db.apiKey,
-                title :[],
-                originalTitle:[],
-                language:[],
-                vote:[],
+            query:'',
+            api: db.apiKey,
+            title: [],
+            originalTitle: [],
+            language: [],
+            vote: [],
 
-            }
-        },
-        methods:{
-            getResponse(){
-                axios.get('https://api.themoviedb.org/3/search/movie',{
+        }
+    },
+
+    methods: {
+        getResponse() {
+            for (let i = 0; i < 20; i++) {
+                axios.get('https://api.themoviedb.org/3/search/movie', {
                     params:
                     {
-                        api_key:this.api,
-                        query:this.query
+                        api_key: this.api,
+                        query: this.query
                     }
-                }).then((res) =>{
-                    
+                }).then((res) => {
+
                     //console.log(res.data.results)
-                    const results = res.data.results
-                    let  
-                    let 
+                    let results = res.data.results[i]
 
-                    for(let i = 0;i< res.data.results;i++){
-                        title.push(results[i].title)
-                        originalTitle.push(results[i].original_title)
-                        language.push(results[i].original_language)
-                        vote.push(results[i].vote_count)
-                    }
 
-                    console.log('Titoli',title)
-                    console.log('Titoli originali',originalTitle)
-                    console.log('Lingua',language)
-                    console.log('Voti',vote)
+
+
+                    this.title.push(results.title)
+                    this.originalTitle.push(results.original_title)
+                    this.language.push(results.original_language)
+                    this.vote.push(results.vote_count)
+
+
+
 
                 })
             }
-        },
-        mounted(){
-            
+            console.log('Titoli', this.title)
+            console.log('Titoli originali', this.originalTitle)
+            console.log('Lingua', this.language)
+            console.log('Voti', this.vote)
         }
-        
+    },
+    mounted() {
+
     }
+
+}
 </script>
 
 <template>
@@ -59,6 +63,4 @@
     </div>
 </template>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
