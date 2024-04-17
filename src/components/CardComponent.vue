@@ -11,7 +11,22 @@ export default {
     props: {
         filmItem: { type: Object },
        // tvSeriesItem: { type: Object }
-    }
+    },
+    mounted() {
+        let rating = document.getElementById('rating-film')
+
+        const ratingVote = this.filmItem.vote / 2;
+        for (let i = 1; i <= ratingVote; i++) {
+            rating.innerHTML += '&#9733;';
+        }
+
+        for (let i = ratingVote; i < 5; i++) {
+            rating.innerHTML += '&#9734;';
+        }
+
+        console.log(this.filmItem.vote)
+
+    },
 }
 </script>
 
@@ -22,7 +37,7 @@ export default {
        <p>{{ filmItem.title }}</p>
         <p>{{ filmItem.originalTitle }}</p>
         <p><img :src="`/icon/${filmItem.language}.svg`" :alt="`${filmItem.language}`" width="15" height="15"></p>
-        <p>{{ filmItem.vote }}</p>
+        <div id="rating-film"></div>
     </li>
 
 

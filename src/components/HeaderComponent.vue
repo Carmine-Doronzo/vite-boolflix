@@ -27,7 +27,7 @@ export default {
                 }).then((res) => {
                 
                     for (let i = 0; i < res.data.results.length; i++) {
-                    console.log(res.data.results)
+                    //console.log(res.data.results)
                      let results = res.data.results[i]
                         let title = results.title
                         let originalTitle = results.original_title

@@ -11,8 +11,28 @@ export default {
     props: {
         //filmItem: { type: Object },
         tvSeriesItem: { type: Object }
-    }
+    },
+
+
+
+
+    mounted() {
+        let rating = document.getElementById('rating')
+
+        const ratingVote = this.tvSeriesItem.voteTv / 2;
+        for (let i = 1; i <= ratingVote; i++) {
+            rating.innerHTML += '&#9733;';
+        }
+
+        for (let i = ratingVote; i <= 4; i++) {
+            rating.innerHTML += '&#9734;';
+        }
+
+        console.log(this.tvSeriesItem.voteTv)
+
+    },
 }
+
 </script>
 
 <template>
@@ -29,12 +49,14 @@ export default {
 
     <li class="relative">
         <img :src="`https://image.tmdb.org/t/p/w342/${tvSeriesItem.imgPathTv}`" class="hover" alt="">
-        
-            <p>{{ tvSeriesItem.titleTv }}</p>
-            <p>{{ tvSeriesItem.originalTitleTv }}</p>
-            <p><img :src='`/icon/${tvSeriesItem.languageTv}.svg`' :alt="`${tvSeriesItem.languageTv}`" width="15" height="15"></p>
-            <p>{{ tvSeriesItem.voteTv }}</p>
-        
+
+        <p>{{ tvSeriesItem.titleTv }}</p>
+        <p>{{ tvSeriesItem.originalTitleTv }}</p>
+        <p><img :src='`/icon/${tvSeriesItem.languageTv}.svg`' :alt="`${tvSeriesItem.languageTv}`" width="15"
+                height="15"></p>
+
+        <span id="rating"> </span>
+
     </li>
 </template>
 
