@@ -19,10 +19,10 @@ export default {
     <li><img :src="`https://image.tmdb.org/t/p/w342/${filmItem.imgPath}`" alt=""></li>
 
     <li>
-        {{ filmItem.title }}
-        {{ filmItem.originalTitle }}
-        {{ filmItem.language }}
-        {{ filmItem.vote }}
+       <p>{{ filmItem.title }}</p>
+        <p>{{ filmItem.originalTitle }}</p>
+        <p><img :src='`/icon/${filmItem.language}.svg`' alt="" width="15" height="15"></p>
+        <p>{{ filmItem.vote }}</p>
     </li>
 
 

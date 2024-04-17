@@ -29,40 +29,40 @@ export default {
 
     <li class="relative">
         <img :src="`https://image.tmdb.org/t/p/w342/${tvSeriesItem.imgPathTv}`" class="hover" alt="">
-        <div class="absolute d-none">
-            {{ tvSeriesItem.titleTv }}
-            {{ tvSeriesItem.originalTitleTv }}
-            {{ tvSeriesItem.languageTv }}
-            {{ tvSeriesItem.voteTv }}
-        </div>
+        
+            <p>{{ tvSeriesItem.titleTv }}</p>
+            <p>{{ tvSeriesItem.originalTitleTv }}</p>
+            <p><img :src='`./assets/icon/${tvSeriesItem.languageTv}.svg`' alt="" width="15" height="15"></p>
+            <p>{{ tvSeriesItem.voteTv }}</p>
+        
     </li>
 </template>
 
 <style lang="scss" scoped>
-.d-none {
-    display: none;
-}
+// .d-none {
+//     display: none;
+// }
 
-.hover:hover .absolute{
+// .hover:hover .absolute{
 
-    display: block;
+//     display: block;
 
-}
+// }
 
-.relative {
-    position: relative;
-    }
-
-
-
-.absolute {
-    position: absolute;
-    //display: block !important;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+// .relative {
+//     position: relative;
+//     }
 
 
-}
-</style>
+
+// .absolute {
+//     position: absolute;
+//     //display: block !important;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+
+
+// }
+// </style>
