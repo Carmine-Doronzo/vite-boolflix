@@ -11,9 +11,10 @@ export default {
   },
   data() {
     return {
-      movies: db.film,
-      tvSeries: db.serieTv
+      db
     }
+  },mounted(){
+    //console.log(this.movies)
   }
 }
 //title,originalTitle,language,vote
@@ -24,11 +25,11 @@ export default {
   <div>
     <h1>FILM</h1>
     <ul>
-      <CardComponent v-for="(filmItem, i) in movies" :key="i" :filmItem="filmItem"  />
+      <CardComponent v-for="(filmItem, i) in db.film" :key="i" :filmItem="filmItem"  />
     </ul>
     <h1>SERIE TV</h1>
     <ul >
-    <CardTvComponent v-for="(tvSeriesItem, i) in tvSeries" :key="i" :tvSeriesItem="tvSeriesItem" />
+    <CardTvComponent v-for="(tvSeriesItem, i) in db.serieTv" :key="i" :tvSeriesItem="tvSeriesItem" />
     </ul>
   </div>
 </template>

@@ -14,20 +14,20 @@ export default {
     },
     computed: {
         rating() {
-            
 
-            const ratingVote = this.filmItem.vote / 2;
-            this.filmItem.vote = ''
+
+            const ratingVote = this.filmItem.vote_average / 2;
+            this.filmItem.vote_average = ''
             for (let i = 1; i <= ratingVote; i++) {
-                this.filmItem.vote += '★';
+                this.filmItem.vote_average += '★';
             }
 
             for (let i = ratingVote; i < 5; i++) {
-                this.filmItem.vote += '☆';
+                this.filmItem.vote_average += '☆';
             }
 
             //console.log(this.filmItem.vote)
-            return this.filmItem.vote
+            return this.filmItem.vote_average
         }
     },
     mounted() {
@@ -49,12 +49,14 @@ export default {
 </script>
 
 <template>
-    <li><img :src="`https://image.tmdb.org/t/p/w342/${filmItem.imgPath}` !== 'https://image.tmdb.org/t/p/w342/null' ? `https://image.tmdb.org/t/p/w342/${filmItem.imgPath}`:'/img/imgNd.png'" alt=""></li>
+    
 
     <li>
+        <img :src="`https://image.tmdb.org/t/p/w342/${filmItem.poster_path}` !== 'https://image.tmdb.org/t/p/w342/null' ? `https://image.tmdb.org/t/p/w342/${filmItem.poster_path}` : '/img/imgNd.png'"
+            width="342" alt="">
         <p>{{ filmItem.title }}</p>
-        <p>{{ filmItem.originalTitle }}</p>
-        <p><img :src="`/icon/${filmItem.language}.svg`" :alt="`${filmItem.language}`" width="15" height="15"></p>
+        <p>{{ filmItem.original_title }}</p>
+        <p><img :src="`/icon/${filmItem.original_language}.svg`" :alt="`${filmItem.original_language}`" width="15" height="15"></p>
         <div id="rating-film">{{ rating }}</div>
     </li>
 

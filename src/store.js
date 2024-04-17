@@ -8,3 +8,4 @@ export const db = reactive({
     query:'',
     apiKey:'c7878d69e7bf01e812daf32433b1bb50'
 })
+

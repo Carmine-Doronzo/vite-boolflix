@@ -11,22 +11,23 @@ export default {
     props: {
         //filmItem: { type: Object },
         tvSeriesItem: { type: Object }
-    },computed: {
+    },
+    computed: {
         rating() {
             
 
-            const ratingVote = this.tvSeriesItem.voteTv / 2;
-            this.tvSeriesItem.voteTv = ''
+            const ratingVote = this.tvSeriesItem.vote_average / 2;
+            this.tvSeriesItem.vote_average = ''
             for (let i = 1; i <= ratingVote; i++) {
-                this.tvSeriesItem.voteTv += '★';
+                this.tvSeriesItem.vote_average += '★';
             }
 
             for (let i = ratingVote; i < 5; i++) {
-                this.tvSeriesItem.voteTv += '☆';
+                this.tvSeriesItem.vote_average += '☆';
             }
 
             //console.log(this.tvSeriesItem.voteTv)
-            return this.tvSeriesItem.voteTv
+            return this.tvSeriesItem.vote_average
         }
     },
 
@@ -53,7 +54,7 @@ export default {
 </script>
 
 <template>
-    <li></li>
+    
 
     <!-- <li>
         {{ movies.title }}
@@ -65,11 +66,11 @@ export default {
 
 
     <li class="relative">
-        <img :src="`https://image.tmdb.org/t/p/w342/${tvSeriesItem.imgPathTv}` !== 'https://image.tmdb.org/t/p/w342/null' ? `https://image.tmdb.org/t/p/w342/${tvSeriesItem.imgPathTv}`:'/img/imgNd.png'" width="342" alt="">
+        <img :src="`https://image.tmdb.org/t/p/w342/${tvSeriesItem.poster_path}` !== 'https://image.tmdb.org/t/p/w342/null' ? `https://image.tmdb.org/t/p/w342/${tvSeriesItem.poster_path}`:'/img/imgNd.png'" width="342" alt="">
 
-        <p>{{ tvSeriesItem.titleTv }}</p>
-        <p>{{ tvSeriesItem.originalTitleTv }}</p>
-        <p><img :src='`/icon/${tvSeriesItem.languageTv}.svg`' :alt="`${tvSeriesItem.languageTv}`" width="15"
+        <p>{{ tvSeriesItem.name }}</p>
+        <p>{{ tvSeriesItem.original_name }}</p>
+        <p><img :src='`/icon/${tvSeriesItem.original_language}.svg`' :alt="`${tvSeriesItem.original_languagelanguag}`" width="15"
                 height="15"></p>
 
         <span id="rating">{{ rating }} </span>
