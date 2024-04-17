@@ -65,7 +65,7 @@ export default {
 
 
     <li class="relative">
-        <img :src="`https://image.tmdb.org/t/p/w342/${tvSeriesItem.imgPathTv}`" class="hover" alt="">
+        <img :src="`https://image.tmdb.org/t/p/w342/${tvSeriesItem.imgPathTv}` !== 'https://image.tmdb.org/t/p/w342/null' ? `https://image.tmdb.org/t/p/w342/${tvSeriesItem.imgPathTv}`:'/img/imgNd.png'" width="342" alt="">
 
         <p>{{ tvSeriesItem.titleTv }}</p>
         <p>{{ tvSeriesItem.originalTitleTv }}</p>

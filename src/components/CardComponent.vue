@@ -49,7 +49,7 @@ export default {
 </script>
 
 <template>
-    <li><img :src="`https://image.tmdb.org/t/p/w342/${filmItem.imgPath}`" alt=""></li>
+    <li><img :src="`https://image.tmdb.org/t/p/w342/${filmItem.imgPath}` !== 'https://image.tmdb.org/t/p/w342/null' ? `https://image.tmdb.org/t/p/w342/${filmItem.imgPath}`:'/img/imgNd.png'" alt=""></li>
 
     <li>
         <p>{{ filmItem.title }}</p>
