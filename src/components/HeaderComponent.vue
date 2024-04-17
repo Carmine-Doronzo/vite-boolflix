@@ -27,12 +27,12 @@ export default {
                 }).then((res) => {
                 
                     for (let i = 0; i < res.data.results.length; i++) {
-                    //console.log(res.data.results)
+                    console.log(res.data.results)
                      let results = res.data.results[i]
                         let title = results.title
                         let originalTitle = results.original_title
                         let language = results.original_language
-                        let vote = results.vote_count
+                        let vote = results.vote_average
                         let imgPath = results.poster_path
                         this.movie.push({title,originalTitle,language,vote,imgPath})
 
@@ -55,12 +55,12 @@ export default {
                     }
                 }).then((resTv) =>{
                     for (let i = 0; i < resTv.data.results.length; i++) {
-                        console.log(resTv)
+                        //console.log(resTv)
                      let results = resTv.data.results[i]
                         let titleTv = results.name
                         let originalTitleTv = results.original_name
                         let languageTv = results.original_language
-                        let voteTv = results.vote_count
+                        let voteTv = results.vote_average
                         let imgPathTv= results.poster_path
                         this.tvSeries.push({titleTv,originalTitleTv,languageTv,voteTv,imgPathTv})
 

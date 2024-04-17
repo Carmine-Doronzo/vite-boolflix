@@ -21,7 +21,7 @@ export default {
     <li>
        <p>{{ filmItem.title }}</p>
         <p>{{ filmItem.originalTitle }}</p>
-        <p><img :src='`/icon/${filmItem.language}.svg`' alt="" width="15" height="15"></p>
+        <p><img :src="`/icon/${filmItem.language}.svg`" :alt="`${filmItem.language}`" width="15" height="15"></p>
         <p>{{ filmItem.vote }}</p>
     </li>
 

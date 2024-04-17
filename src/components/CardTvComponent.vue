@@ -32,7 +32,7 @@ export default {
         
             <p>{{ tvSeriesItem.titleTv }}</p>
             <p>{{ tvSeriesItem.originalTitleTv }}</p>
-            <p><img :src='`/icon/${tvSeriesItem.languageTv}.svg`' alt="" width="15" height="15"></p>
+            <p><img :src='`/icon/${tvSeriesItem.languageTv}.svg`' :alt="`${tvSeriesItem.languageTv}`" width="15" height="15"></p>
             <p>{{ tvSeriesItem.voteTv }}</p>
         
     </li>

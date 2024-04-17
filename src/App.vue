@@ -33,4 +33,8 @@ export default {
   </div>
 </template>
 
-<style></style>
+<style >
+ul ol menu{
+  list-style: none;
+}
+</style>
