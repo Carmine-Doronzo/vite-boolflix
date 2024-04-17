@@ -16,6 +16,7 @@ export default {
             
 
             const ratingVote = this.tvSeriesItem.voteTv / 2;
+            this.tvSeriesItem.voteTv = ''
             for (let i = 1; i <= ratingVote; i++) {
                 this.tvSeriesItem.voteTv += '★';
             }

@@ -17,6 +17,7 @@ export default {
             
 
             const ratingVote = this.filmItem.vote / 2;
+            this.filmItem.vote = ''
             for (let i = 1; i <= ratingVote; i++) {
                 this.filmItem.vote += '★';
             }
