@@ -20,7 +20,7 @@ export default {
                 this.tvSeriesItem.voteTv += '★';
             }
 
-            for (let i = ratingVote; i <= 5; i++) {
+            for (let i = ratingVote; i < 5; i++) {
                 this.tvSeriesItem.voteTv += '☆';
             }
 
@@ -71,7 +71,7 @@ export default {
         <p><img :src='`/icon/${tvSeriesItem.languageTv}.svg`' :alt="`${tvSeriesItem.languageTv}`" width="15"
                 height="15"></p>
 
-        <span id="rating"> </span>
+        <span id="rating">{{ rating }} </span>
 
     </li>
 </template>

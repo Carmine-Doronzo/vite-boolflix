@@ -21,7 +21,7 @@ export default {
                 this.filmItem.vote += '★';
             }
 
-            for (let i = ratingVote; i <= 5; i++) {
+            for (let i = ratingVote; i < 5; i++) {
                 this.filmItem.vote += '☆';
             }
 
