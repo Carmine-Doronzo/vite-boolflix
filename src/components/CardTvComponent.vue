@@ -11,24 +11,40 @@ export default {
     props: {
         //filmItem: { type: Object },
         tvSeriesItem: { type: Object }
+    },computed: {
+        rating() {
+            
+
+            const ratingVote = this.tvSeriesItem.voteTv / 2;
+            for (let i = 1; i <= ratingVote; i++) {
+                this.tvSeriesItem.voteTv += '★';
+            }
+
+            for (let i = ratingVote; i <= 5; i++) {
+                this.tvSeriesItem.voteTv += '☆';
+            }
+
+            //console.log(this.tvSeriesItem.voteTv)
+            return this.tvSeriesItem.voteTv
+        }
     },
 
 
 
 
     mounted() {
-        let rating = document.getElementById('rating')
+        // let rating = document.getElementById('rating')
 
-        const ratingVote = this.tvSeriesItem.voteTv / 2;
-        for (let i = 1; i <= ratingVote; i++) {
-            rating.innerHTML += '&#9733;';
-        }
+        // const ratingVote = this.tvSeriesItem.voteTv / 2;
+        // for (let i = 1; i <= ratingVote; i++) {
+        //     rating.innerHTML += '&#9733;';
+        // }
 
-        for (let i = ratingVote; i <= 4; i++) {
-            rating.innerHTML += '&#9734;';
-        }
+        // for (let i = ratingVote; i <= 4; i++) {
+        //     rating.innerHTML += '&#9734;';
+        // }
 
-        console.log(this.tvSeriesItem.voteTv)
+        // console.log(this.tvSeriesItem.voteTv)
 
     },
 }
