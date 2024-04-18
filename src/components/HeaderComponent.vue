@@ -196,8 +196,8 @@ export default {
         <div>
             <ul class="link">
                 <li><a href="#" @click="show()">Home</a></li>
-                <li><a href="#" @click="db.hideTv = !db.hideTv">Serie TV</a></li>
-                <li><a href="#" @click="db.hideFilm = !db.hideFilm">Film</a></li>
+                <li><a href="#" @click="db.hideTv =!db.hideFilm">Serie TV</a></li>
+                <li><a href="#" @click="db.hideFilm = !db.hideTv">Film</a></li>
                 <li><a href="#">Originali</a></li>
                 <li><a href="#">Aggiunti di recente</a></li>
                 <li><a href="#">La mia lista</a></li>
