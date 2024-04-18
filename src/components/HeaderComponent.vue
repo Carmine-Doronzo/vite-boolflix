@@ -113,12 +113,17 @@ export default {
             // this.originalTitles =[]
             // this.languages =[]
             // this.votes = []
+        },
+        randomQuery(){
+            const caracter = ['a','b','c','d','e','f','g','h','i','l','m','n','o','p','q','r','s','t','u','v','z','x','y','j']
+            const i = Math.floor(Math.random() * caracter.length)
+            return caracter[i]
         }
     },
 
     mounted() {
 
-        this.query = ''
+        this.query = this.randomQuery()
 
         this.getResponse()
 
