@@ -14,10 +14,10 @@ export default {
 
         }
     },
-    
+
 
     methods: {
-        getMovie(){
+        getMovie() {
             this.movie = []
             axios.get('https://api.themoviedb.org/3/search/movie', {
                 params:
@@ -26,8 +26,8 @@ export default {
                     query: this.query
                 }
             }).then((res) => {
-                   this.db.film = res.data.results
-                    
+                this.db.film = res.data.results
+
                 // for (let i = 0; i < res.data.results.length; i++) {
                 //     //console.log(res.data.results)
                 //     let results = res.data.results[i]
@@ -39,7 +39,7 @@ export default {
                 //     this.db.film.push({ title, originalTitle, language, vote, imgPath })
 
                 // }
-                
+
                 //this.movie = []
                 //  this.titles.push(results.title)
                 //  this.originalTitles.push(results.original_title)
@@ -51,8 +51,8 @@ export default {
 
             })
         },
-        getTvSeries(){
-            
+        getTvSeries() {
+
             axios.get('https://api.themoviedb.org/3/search/tv', {
                 params:
                 {
@@ -74,23 +74,23 @@ export default {
                 //     this.db.serieTv.push({ titleTv, originalTitleTv, languageTv, voteTv, imgPathTv })
 
                 // }
-                
-                
+
+
                 //this.tvSeries = []
 
 
-                
+
             })
         },
 
         getResponse() {
-            
+
 
             this.getMovie()
-           
+
             this.getTvSeries()
-             
-            this.query =''
+
+            this.query = ''
             //console.log('Titoli', this.titles)
             //console.log('Titoli originali', this.originalTitles)
             //console.log('Lingua', this.languages)
@@ -102,7 +102,7 @@ export default {
             // this.votes = []
         }
     },
-    
+
     mounted() {
 
     }
@@ -111,9 +111,16 @@ export default {
 </script>
 
 <template>
-    <div>
-        <input type="text" v-model="query">
-        <button @click="getResponse()">Cerca</button>
+    <div class="nav-bar">
+        <img src="https://image.tmdb.org/t/p/w154/wwemzKWzjKYJFfCeiB57q3r4Bcm.png" alt="">
+        <div class="search">
+            <input type="text" v-model="query">
+            <button @click="getResponse()" class="start-search">Cerca</button>
+        </div>
+        <div>
+        <ul>
+        </ul>
+        </div>
         <!--<ul>
         <li><h1>titoli</h1></li>
         <li v-for="title in titles">{{ title }}</li>
@@ -127,4 +134,21 @@ export default {
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+
+.nav-bar {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    align-items: center;
+}
+.search {
+    display: flex;
+    gap: 10px;
+}
+.start-search{
+    padding: 3px;
+}
+</style>

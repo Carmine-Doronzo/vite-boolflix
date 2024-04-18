@@ -35,7 +35,6 @@ export default {
 </template>
 
 <style >
-ul ol menu{
-  list-style: none;
-}
+@use '../style/general.scss';
+
 </style>
