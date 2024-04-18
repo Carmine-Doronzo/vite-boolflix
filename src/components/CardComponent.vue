@@ -3,37 +3,37 @@
 export default {
     // data() {
     //     return {
-    //          movies: db.film,
+    //          movies: db.,
     //          tvSeries: db.serieTv
 
     //     }
     // },
     props: {
-        filmItem: { type: Object },
+        Item: { type: Object },
         // tvSeriesItem: { type: Object }
     },
     computed: {
         rating() {
 
 
-            const ratingVote = this.filmItem.vote_average / 2;
-            this.filmItem.vote_average = ''
+            const ratingVote = this.Item.vote / 2;
+            this.Item.vote = ''
             for (let i = 1; i <= ratingVote; i++) {
-                this.filmItem.vote_average += '★';
+                this.Item.vote += '★';
             }
 
             for (let i = ratingVote; i < 5; i++) {
-                this.filmItem.vote_average += '☆';
+                this.Item.vote += '☆';
             }
 
-            //console.log(this.filmItem.vote)
-            return this.filmItem.vote_average
+            //console.log(this.Item.vote)
+            return this.Item.vote
         }
     },
     mounted() {
-        // let rating = document.getElementById('rating-film')
+        // let rating = document.getElementById('rating-')
 
-        // const ratingVote = this.filmItem.vote / 2;
+        // const ratingVote = this.Item.vote / 2;
         // for (let i = 1; i <= ratingVote; i++) {
         //     rating.innerHTML += '&#9733;';
         // }
@@ -42,7 +42,7 @@ export default {
         //     rating.innerHTML += '&#9734;';
         // }
 
-        // console.log(this.filmItem.vote)
+        // console.log(this.Item.vote)
 
     },
 }
@@ -50,14 +50,13 @@ export default {
 
 <template>
     
-
-    <li>
-        <img :src="`https://image.tmdb.org/t/p/w342/${filmItem.poster_path}` !== 'https://image.tmdb.org/t/p/w342/null' ? `https://image.tmdb.org/t/p/w342/${filmItem.poster_path}` : '/img/imgNd.png'"
+    <li class="card">
+        <img :src="`https://image.tmdb.org/t/p/w342/${Item.imgPath}` !== 'https://image.tmdb.org/t/p/w342/null' ? `https://image.tmdb.org/t/p/w342/${Item.imgPath}` : '/img/imgNd.png'"
             width="342" alt="">
-        <p>{{ filmItem.title }}</p>
-        <p>{{ filmItem.original_title }}</p>
-        <p><img :src="`/icon/${filmItem.original_language}.svg`" :alt="`${filmItem.original_language}`" width="15" height="15"></p>
-        <div id="rating-film">{{ rating }}</div>
+        <p>{{ Item.title }}</p>
+        <p>{{ Item.originalTitle }}</p>
+        <p><img :src="`/icon/${Item.language}.svg`" :alt="`${Item.language}`" width="15" height="15"></p>
+        <div id="rating-">{{ rating }}</div>
     </li>
 
 
@@ -70,4 +69,11 @@ export default {
     </li>  -->
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.card{
+    border: 1px solid;
+    width: calc((4 * 100) / 12);
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+</style>

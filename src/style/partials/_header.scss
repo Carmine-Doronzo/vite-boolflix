@@ -1,0 +1,23 @@
+.nav-bar {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    align-items: center;
+}
+
+.search {
+    display: flex;
+    gap: 10px;
+}
+
+.start-search {
+    padding: 3px;
+}
+.link{
+    color:white;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    
+}

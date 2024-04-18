@@ -1,13 +1,13 @@
 <script>
 import HeaderComponent from './components/HeaderComponent.vue';
 import CardComponent from './components/CardComponent.vue';
-import CardTvComponent from './components/CardTvComponent.vue';
+//import CardTvComponent from './components/CardTvComponent.vue';
 import { db } from './store.js'
 export default {
   components: {
     HeaderComponent,
     CardComponent,
-    CardTvComponent
+    //CardTvComponent
   },
   data() {
     return {
@@ -22,19 +22,22 @@ export default {
 
 <template>
   <HeaderComponent />
-  <div>
+  <div class="container">
     <h1>FILM</h1>
-    <ul>
-      <CardComponent v-for="(filmItem, i) in db.film" :key="i" :filmItem="filmItem"  />
+    <ul v-if="db.countFilm === db.feedbackFilm" class="row" >
+      <CardComponent v-for="(filmItem, i) in db.film" :key="db.id" :Item="filmItem"  />
     </ul>
     <h1>SERIE TV</h1>
-    <ul >
-    <CardTvComponent v-for="(tvSeriesItem, i) in db.serieTv" :key="i" :tvSeriesItem="tvSeriesItem" />
+    <ul v-if="db.countSerie === db.feedbackSerie" class="row" >
+    <CardComponent v-for="(tvSeriesItem, i) in db.serieTv" :key="db.id" :Item="tvSeriesItem" />
     </ul>
   </div>
 </template>
 
-<style >
-@use '../style/general.scss';
+<style lang="scss" scoped>
+
+@use './style/general.scss';
+
+
 
 </style>

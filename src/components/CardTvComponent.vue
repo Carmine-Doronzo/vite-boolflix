@@ -66,7 +66,7 @@ export default {
 
 
     <li class="relative">
-        <img :src="`https://image.tmdb.org/t/p/w342/${tvSeriesItem.poster_path}` !== 'https://image.tmdb.org/t/p/w342/null' ? `https://image.tmdb.org/t/p/w342/${tvSeriesItem.poster_path}`:'/img/imgNd.png'" width="342" alt="">
+        <img :src="`https://image.tmdb.org/t/p/w342/${tvSeriesItem.poster_path}` !== 'https://image.tmdb.org/t/p/w342/null' ? `https://image.tmdb.org/t/p/w342/${tvSeriesItem.poster_path}`:'/img/imgNd.png'" width="342" height="450" alt="">
 
         <p>{{ tvSeriesItem.name }}</p>
         <p>{{ tvSeriesItem.original_name }}</p>
