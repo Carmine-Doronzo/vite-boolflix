@@ -73,34 +73,5 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.card {
-    max-height:400px ;
-    border: 1px solid;
-    width: calc(((3 * 100%) / 12) - 20px);
-    flex-wrap: wrap;
-    flex-shrink: 0;
-    position:relative;
-    text-overflow: ellipsis;
-}
-.description{
-    max-height: 100%;
-    padding: 20px;
-    background-color: gray;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: none;
-    overflow: scroll;
-    
-}
-
-.card:hover{
-    .description{
-        display: block;
-        opacity: 0.8;
-    }
-}
+@use '../style/partials/card.scss'
 </style>

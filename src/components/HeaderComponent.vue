@@ -113,6 +113,10 @@ export default {
 
             }
         },
+        hide(){
+            this.db.hideTv = false
+            this.db.hideFilm = false
+        },
 
         getResponse() {
 
@@ -121,9 +125,10 @@ export default {
 
             this.getTvSeries()
 
-            
+            this.getActors()
 
             this.query = ''
+            
             //console.log('Titoli', this.titles)
             //console.log('Titoli originali', this.originalTitles)
             //console.log('Lingua', this.languages)
@@ -148,7 +153,7 @@ export default {
 
         this.getResponse()
 
-        this.getActors()
+        
 
         this.query = ''
 
@@ -163,9 +168,9 @@ export default {
 
         <div>
             <ul class="link">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Serie TV</a></li>
-                <li><a href="#">Film</a></li>
+                <li><a href="#" @click="hide()">Home</a></li>
+                <li><a href="#" @click="db.hideTv = !db.hideTv">Serie TV</a></li>
+                <li><a href="#" @click="db.hideFilm = !db.hideFilm">Film</a></li>
                 <li><a href="#">Originali</a></li>
                 <li><a href="#">Aggiunti di recente</a></li>
                 <li><a href="#">La mia lista</a></li>
