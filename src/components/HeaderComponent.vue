@@ -8,7 +8,7 @@ export default {
             db,
             query: '',
             //hide:db.hide
-            
+
             // movie: db.film,
             // tvSeries: db.serieTv
 
@@ -53,7 +53,7 @@ export default {
                 //  this.languages.push(results.original_language)
                 //  this.votes.push(results.vote_count)
 
-                console.log(this.db.film)
+                //console.log(this.db.film)
                 // }
 
             })
@@ -74,7 +74,7 @@ export default {
                 // for(let i = 0; i < resTv.data.results.length; i++){
                 //     this.db.countSerie++
                 // }
-                    this.db.serieTv =[]
+                this.db.serieTv = []
                 for (let i = 0; i < resTv.data.results.length; i++) {
                     //console.log(resTv)
                     let results = resTv.data.results[i]
@@ -85,9 +85,10 @@ export default {
                     let imgPath = results.poster_path
                     let id = results.id
                     let overView = results.overview
-                    this.db.serieTv.push({ title, originalTitle, language, vote, imgPath, id, overView  })
+                    this.db.serieTv.push({ title, originalTitle, language, vote, imgPath, id, overView })
 
                 }
+
 
 
                 //this.tvSeries = []
@@ -96,6 +97,22 @@ export default {
 
             })
         },
+        getActors() {
+            for (let i = 0; i < this.db.serieTv.length; i++) {
+                axios.get(`https://api.themoviedb.org/3/tv/${this.db.serieTv[i].id}/credits`,
+                    {
+                        params: {
+                            api_key: this.db.apiKey,
+                            language: this.db.serieTv[i].language
+                        }
+
+                    }
+                ).then((resAct) => {
+                    console.log(resAct.data.cast)
+                })
+
+            }
+        },
 
         getResponse() {
 
@@ -103,6 +120,8 @@ export default {
             this.getMovie()
 
             this.getTvSeries()
+
+            
 
             this.query = ''
             //console.log('Titoli', this.titles)
@@ -115,8 +134,8 @@ export default {
             // this.languages =[]
             // this.votes = []
         },
-        randomQuery(){
-            const caracter = ['a','b','c','d','e','f','g','h','i','l','m','n','o','p','q','r','s','t','u','v','z','x','y','j']
+        randomQuery() {
+            const caracter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'z', 'x', 'y', 'j']
             const i = Math.floor(Math.random() * caracter.length)
             return caracter[i]
         }
@@ -125,8 +144,11 @@ export default {
     mounted() {
 
         this.query = this.randomQuery()
+        
 
         this.getResponse()
+
+        this.getActors()
 
         this.query = ''
 
@@ -138,8 +160,8 @@ export default {
 <template>
     <div class="nav-bar">
         <img src="https://image.tmdb.org/t/p/w154/wwemzKWzjKYJFfCeiB57q3r4Bcm.png" alt="">
-        
-        <div >
+
+        <div>
             <ul class="link">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Serie TV</a></li>
@@ -154,7 +176,7 @@ export default {
             <input type="text" @keyup.enter="getResponse()" v-model="query">
             <button @click="getResponse()" class="start-search">Cerca</button>
         </div>
-        
+
         <!--<ul>
         <li><h1>titoli</h1></li>
         <li v-for="title in titles">{{ title }}</li>
