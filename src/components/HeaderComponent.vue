@@ -41,7 +41,8 @@ export default {
                     let vote = results.vote_average
                     let imgPath = results.poster_path
                     let id = results.id
-                    this.db.film.push({ title, originalTitle, language, vote, imgPath, id })
+                    let overView = results.overview
+                    this.db.film.push({ title, originalTitle, language, vote, imgPath, id, overView })
 
                 }
 
@@ -82,7 +83,8 @@ export default {
                     let vote = results.vote_average
                     let imgPath = results.poster_path
                     let id = results.id
-                    this.db.serieTv.push({ title, originalTitle, language, vote, imgPath, id  })
+                    let overView = results.overview
+                    this.db.serieTv.push({ title, originalTitle, language, vote, imgPath, id, overView  })
 
                 }
 
@@ -115,6 +117,12 @@ export default {
     },
 
     mounted() {
+
+        this.query = ''
+
+        this.getResponse()
+
+        this.query = ''
 
     }
 

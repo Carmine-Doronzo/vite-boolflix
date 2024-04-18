@@ -49,14 +49,17 @@ export default {
 </script>
 
 <template>
-    
+
     <li class="card">
         <img :src="`https://image.tmdb.org/t/p/w342/${Item.imgPath}` !== 'https://image.tmdb.org/t/p/w342/null' ? `https://image.tmdb.org/t/p/w342/${Item.imgPath}` : '/img/imgNd.png'"
-            width="342" alt="">
-        <p>{{ Item.title }}</p>
-        <p>{{ Item.originalTitle }}</p>
-        <p><img :src="`/icon/${Item.language}.svg`" :alt="`${Item.language}`" width="15" height="15"></p>
-        <div id="rating-">{{ rating }}</div>
+            width="342" height="350" alt="">
+        <div class="description">
+            <p>Titolo: {{ Item.title }}</p>
+            <p>Titolo originale: {{ Item.originalTitle }}</p>
+            <p>Lingua: <img :src="`/icon/${Item.language}.svg`" :alt="`${Item.language}`" width="15" height="15"></p>
+            <div id="rating-">Voto: {{ rating }}</div>
+            <p>{{ Item.overView }} </p> 
+        </div>
     </li>
 
 
@@ -70,10 +73,34 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.card{
+.card {
+    max-height:400px ;
     border: 1px solid;
-    width: calc((4 * 100) / 12);
+    width: calc(((3 * 100%) / 12) - 20px);
     flex-wrap: wrap;
     flex-shrink: 0;
+    position:relative;
+    text-overflow: ellipsis;
+}
+.description{
+    max-height: 100%;
+    padding: 20px;
+    background-color: gray;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    overflow: scroll;
+    
+}
+
+.card:hover{
+    .description{
+        display: block;
+        opacity: 0.8;
+    }
 }
 </style>
