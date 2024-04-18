@@ -5,6 +5,7 @@ import { reactive } from "vue"
 export const db = reactive({
     film:[],
     serieTv:[],
+    //hide: false,
     // countFilm:0,
     // countSerie:0,
     // feedbackFilm:0,

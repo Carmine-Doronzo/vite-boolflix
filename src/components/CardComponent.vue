@@ -3,8 +3,8 @@
 export default {
     // data() {
     //     return {
-    //          movies: db.,
-    //          tvSeries: db.serieTv
+            
+             
 
     //     }
     // },

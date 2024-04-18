@@ -11,9 +11,10 @@ export default {
   },
   data() {
     return {
-      db
+      db,
+      //hide: db.hide
     }
-  },mounted(){
+  }, mounted() {
     //console.log(this.movies)
   }
 }
@@ -23,21 +24,21 @@ export default {
 <template>
   <HeaderComponent />
   <div class="container">
-    <h1>FILM</h1>
-    <ul v-if="db.countFilm === db.feedbackFilm" class="row" >
-      <CardComponent v-for="(filmItem, i) in db.film" :key="db.id" :Item="filmItem"  />
-    </ul>
-    <h1>SERIE TV</h1>
-    <ul v-if="db.countSerie === db.feedbackSerie" class="row" >
-    <CardComponent v-for="(tvSeriesItem, i) in db.serieTv" :key="db.id" :Item="tvSeriesItem" />
-    </ul>
+    <div class="padd-y">
+      <h1>FILM</h1>
+      <ul class="row">
+        <CardComponent v-for="(filmItem, i) in db.film" :key="db.id" :Item="filmItem" />
+      </ul>
+    </div>
+    <div class="padd-y">
+      <h1>SERIE TV</h1>
+      <ul class="row">
+        <CardComponent v-for="(tvSeriesItem, i) in db.serieTv" :key="db.id" :Item="tvSeriesItem" />
+      </ul>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-
 @use './style/general.scss';
-
-
-
 </style>

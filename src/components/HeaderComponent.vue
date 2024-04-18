@@ -7,6 +7,7 @@ export default {
         return {
             db,
             query: '',
+            //hide:db.hide
             
             // movie: db.film,
             // tvSeries: db.serieTv
@@ -140,17 +141,17 @@ export default {
         
         <div >
             <ul class="link">
-                <li><a href="">Home</a></li>
-                <li><a href="">Serie TV</a></li>
-                <li><a href="">Film</a></li>
-                <li><a href="">Originali</a></li>
-                <li><a href="">Aggiunti di recente</a></li>
-                <li><a href="">La mia lista</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Serie TV</a></li>
+                <li><a href="#">Film</a></li>
+                <li><a href="#">Originali</a></li>
+                <li><a href="#">Aggiunti di recente</a></li>
+                <li><a href="#">La mia lista</a></li>
             </ul>
         </div>
 
         <div class="search">
-            <input type="text" v-model="query">
+            <input type="text" @keyup.enter="getResponse()" v-model="query">
             <button @click="getResponse()" class="start-search">Cerca</button>
         </div>
         
