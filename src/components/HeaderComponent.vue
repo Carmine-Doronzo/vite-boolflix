@@ -46,20 +46,20 @@ export default {
                     this.db.film.push({ title, originalTitle, language, vote, imgPath, id, overView })
 
                 }
-                for (let i = 0; i < this.db.film.length; i++) {
-                axios.get(`https://api.themoviedb.org/3/movies/${this.db.film[i].id}/credits`,
-                    {
-                        params: {
-                            api_key: this.db.apiKey,
-                            language: this.db.film[i].language
-                        }
+                // for (let i = 0; i < this.db.film.length; i++) {
+                //     axios.get(`https://api.themoviedb.org/3/movies/${this.db.film[i].id}/credits`,
+                //         {
+                //             params: {
+                //                 api_key: this.db.apiKey,
+                //                 language: this.db.film[i].language
+                //             }
 
-                    }
-                ).then((resAct) => {
-                    console.log(resAct.data.cast)
-                })
+                //         }
+                //     ).then((resAct) => {
+                //         console.log(resAct.data.cast)
+                //     })
 
-            }
+                //}
 
                 //this.movie = []
                 //  this.titles.push(results.title)
@@ -103,20 +103,20 @@ export default {
 
                 }
 
-                for (let i = 0; i < this.db.serieTv.length; i++) {
-                axios.get(`https://api.themoviedb.org/3/tv/${this.db.serieTv[i].id}/credits`,
-                    {
-                        params: {
-                            api_key: this.db.apiKey,
-                            language: this.db.serieTv[i].language
-                        }
+                // for (let i = 0; i < this.db.serieTv.length; i++) {
+                // axios.get(`https://api.themoviedb.org/3/tv/${this.db.serieTv[i].id}/credits`,
+                //     {
+                //         params: {
+                //             api_key: this.db.apiKey,
+                //             language: this.db.serieTv[i].language
+                //         }
 
-                    }
-                ).then((resAct) => {
-                    console.log(resAct.data.cast)
-                })
+                //     }
+                // ).then((resAct) => {
+                //     console.log(resAct.data.cast)
+                // })
 
-            }
+
 
                 //this.tvSeries = []
 
@@ -124,67 +124,67 @@ export default {
 
             })
         },
-        
-            
-        
-        show(){
-            this.db.hideTv = false
-            this.db.hideFilm = false
-        },
-        // hide(){
-        //     if(this.db.hideFilm === false && this.db.hideTv === true){
-
-        //         this.db.hideFilm = true
-        //         this.db.hideTv = false
-        //     }else if( this.db.hideFilm === true && this.db.hideTv === false){
-        //         this.db.hideFilm = false
-        //         this.db.hideTv = 
-        //     }
-             
-        // },
 
 
 
-        getResponse() {
-
-
-            this.getMovie()
-
-            this.getTvSeries()
-
-            this.getActors()
-
-            this.query = ''
-            
-            //console.log('Titoli', this.titles)
-            //console.log('Titoli originali', this.originalTitles)
-            //console.log('Lingua', this.languages)
-            //console.log('Voti', this.votes)
-            // this.query = db.query
-            // this.titles = []
-            // this.originalTitles =[]
-            // this.languages =[]
-            // this.votes = []
-        },
-        randomQuery() {
-            const caracter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'z', 'x', 'y', 'j']
-            const i = Math.floor(Math.random() * caracter.length)
-            return caracter[i]
-        }
+    show() {
+        this.db.hideTv = false
+        this.db.hideFilm = false
     },
+    // hide(){
+    //     if(this.db.hideFilm === false && this.db.hideTv === true){
 
-    mounted() {
+    //         this.db.hideFilm = true
+    //         this.db.hideTv = false
+    //     }else if( this.db.hideFilm === true && this.db.hideTv === false){
+    //         this.db.hideFilm = false
+    //         this.db.hideTv =
+    //     }
 
-        this.query = this.randomQuery()
-        
+    // },
 
-        this.getResponse()
 
-        
+
+    getResponse() {
+
+
+        this.getMovie()
+
+        this.getTvSeries()
+
+        this.getActors()
 
         this.query = ''
 
+        //console.log('Titoli', this.titles)
+        //console.log('Titoli originali', this.originalTitles)
+        //console.log('Lingua', this.languages)
+        //console.log('Voti', this.votes)
+        // this.query = db.query
+        // this.titles = []
+        // this.originalTitles =[]
+        // this.languages =[]
+        // this.votes = []
+    },
+    randomQuery() {
+        const caracter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'z', 'x', 'y', 'j']
+        const i = Math.floor(Math.random() * caracter.length)
+        return caracter[i]
     }
+},
+
+mounted() {
+
+    this.query = this.randomQuery()
+
+
+    this.getResponse()
+
+
+
+    this.query = ''
+
+}
 
 }
 </script>
@@ -196,7 +196,7 @@ export default {
         <div>
             <ul class="link">
                 <li><a href="#" @click="show()">Home</a></li>
-                <li><a href="#" @click="db.hideTv =!db.hideFilm">Serie TV</a></li>
+                <li><a href="#" @click="db.hideTv = !db.hideFilm">Serie TV</a></li>
                 <li><a href="#" @click="db.hideFilm = !db.hideTv">Film</a></li>
                 <li><a href="#">Originali</a></li>
                 <li><a href="#">Aggiunti di recente</a></li>
