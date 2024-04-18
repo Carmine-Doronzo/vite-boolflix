@@ -46,6 +46,20 @@ export default {
                     this.db.film.push({ title, originalTitle, language, vote, imgPath, id, overView })
 
                 }
+                for (let i = 0; i < this.db.film.length; i++) {
+                axios.get(`https://api.themoviedb.org/3/movies/${this.db.film[i].id}/credits`,
+                    {
+                        params: {
+                            api_key: this.db.apiKey,
+                            language: this.db.film[i].language
+                        }
+
+                    }
+                ).then((resAct) => {
+                    console.log(resAct.data.cast)
+                })
+
+            }
 
                 //this.movie = []
                 //  this.titles.push(results.title)
@@ -89,16 +103,7 @@ export default {
 
                 }
 
-
-
-                //this.tvSeries = []
-
-
-
-            })
-        },
-        getActors() {
-            for (let i = 0; i < this.db.serieTv.length; i++) {
+                for (let i = 0; i < this.db.serieTv.length; i++) {
                 axios.get(`https://api.themoviedb.org/3/tv/${this.db.serieTv[i].id}/credits`,
                     {
                         params: {
@@ -112,11 +117,33 @@ export default {
                 })
 
             }
+
+                //this.tvSeries = []
+
+
+
+            })
         },
-        hide(){
+        
+            
+        
+        show(){
             this.db.hideTv = false
             this.db.hideFilm = false
         },
+        // hide(){
+        //     if(this.db.hideFilm === false && this.db.hideTv === true){
+
+        //         this.db.hideFilm = true
+        //         this.db.hideTv = false
+        //     }else if( this.db.hideFilm === true && this.db.hideTv === false){
+        //         this.db.hideFilm = false
+        //         this.db.hideTv = 
+        //     }
+             
+        // },
+
+
 
         getResponse() {
 
@@ -168,7 +195,7 @@ export default {
 
         <div>
             <ul class="link">
-                <li><a href="#" @click="hide()">Home</a></li>
+                <li><a href="#" @click="show()">Home</a></li>
                 <li><a href="#" @click="db.hideTv = !db.hideTv">Serie TV</a></li>
                 <li><a href="#" @click="db.hideFilm = !db.hideFilm">Film</a></li>
                 <li><a href="#">Originali</a></li>
