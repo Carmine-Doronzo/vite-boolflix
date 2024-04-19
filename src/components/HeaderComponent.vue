@@ -152,7 +152,7 @@ export default {
 
         this.getTvSeries()
 
-        this.getActors()
+        //this.getActors()
 
         this.query = ''
 
