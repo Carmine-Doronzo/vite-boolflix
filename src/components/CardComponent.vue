@@ -6,7 +6,7 @@ export default {
             
              
 
-    //     }
+    //     
     // },
     props: {
         Item: { type: Object },
