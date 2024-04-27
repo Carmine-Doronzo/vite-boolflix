@@ -131,17 +131,25 @@ export default {
         this.db.hideTv = false
         this.db.hideFilm = false
     },
-    // hide(){
-    //     if(this.db.hideFilm === false && this.db.hideTv === true){
+    hideFilm(){
+        this.db.hideFilm = true
+            this.db.hideTv = false
+        // if(this.db.hideFilm === false ){
 
-    //         this.db.hideFilm = true
-    //         this.db.hideTv = false
-    //     }else if( this.db.hideFilm === true && this.db.hideTv === false){
-    //         this.db.hideFilm = false
-    //         this.db.hideTv =
-    //     }
+        //     this.db.hideFilm = true
+        //     this.db.hideTv = false
+        // }else if(this.db.hideTv === false){
+        //     this.db.hideFilm = false
+        //     this.db.hideTv = true
 
-    // },
+        // }
+
+    },
+    hideTv(){
+        this.db.hideFilm = false
+            this.db.hideTv = true
+
+    },
 
 
 
@@ -196,8 +204,8 @@ mounted() {
         <div>
             <ul class="link">
                 <li><a href="#" @click="show()">Home</a></li>
-                <li><a href="#" @click="db.hideTv = !db.hideFilm">Serie TV</a></li>
-                <li><a href="#" @click="db.hideFilm = !db.hideTv">Film</a></li>
+                <li><a href="#" @click="hideFilm()">Serie TV</a></li>
+                <li><a href="#" @click="hideTv()">Film</a></li>
                 <li><a href="#">Originali</a></li>
                 <li><a href="#">Aggiunti di recente</a></li>
                 <li><a href="#">La mia lista</a></li>

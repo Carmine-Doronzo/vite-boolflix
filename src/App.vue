@@ -24,7 +24,7 @@ export default {
 <template>
   <HeaderComponent />
   <div class="container">
-    <div :class="db.hideTv === true ? 'padd-y d-none' : 'padd-y d-block'">
+    <div :class="db.hideFilm === true ? 'padd-y d-none' : 'padd-y d-block'">
 
       <h1>FILM</h1>
       <ul class="row">
@@ -32,7 +32,7 @@ export default {
       </ul>
 
     </div>
-    <div :class="db.hideFilm === true ? 'padd-y d-none' : 'padd-y d-block'">
+    <div :class="db.hideTv === true ? 'padd-y d-none' : 'padd-y d-block'">
       <h1>SERIE TV</h1>
       <ul class="row">
         <CardComponent v-for="(tvSeriesItem, i) in db.serieTv" :key="db.id" :Item="tvSeriesItem" />
