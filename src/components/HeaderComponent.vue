@@ -19,12 +19,16 @@ export default {
 
     methods: {
         getMovie() {
+            let lang = document.getElementById('language').value
             this.movie = []
-            axios.get('https://api.themoviedb.org/3/search/movie', {
+            axios.get('https://api.themoviedb.org/3/discover/movie', {
                 params:
                 {
                     api_key: this.db.apiKey,
-                    query: this.query
+                    query: this.query,
+                    language:'it',
+                    with_original_language:lang.toLowerCase(),
+                    
                 }
             }).then((res) => {
                 //this.db.film = res.data.results
@@ -73,12 +77,16 @@ export default {
             })
         },
         getTvSeries() {
+            let lang = document.getElementById('language').value
 
-            axios.get('https://api.themoviedb.org/3/search/tv', {
+            axios.get('https://api.themoviedb.org/3/discover/tv', {
                 params:
                 {
                     api_key: this.db.apiKey,
-                    query: this.query
+                    query: this.query,
+                    language:'it',
+                    with_original_language:lang.toLowerCase(),
+                    
                 }
             }).then((resTv) => {
 
@@ -151,6 +159,21 @@ export default {
 
     },
 
+    getLanguage(){
+        axios.get('https://api.themoviedb.org/3/configuration/languages',{
+            params:{
+                api_key:this.db.apiKey
+            }
+        }).then((lang) =>{
+            
+            for(let i = 0; i < lang.data.length; i++){
+            
+            this.db.langs.push(lang.data[i])
+            
+            }
+        })
+    },
+
 
 
     getResponse() {
@@ -188,7 +211,7 @@ mounted() {
 
     this.getResponse()
 
-
+    this.getLanguage()
 
     this.query = ''
 
@@ -211,6 +234,10 @@ mounted() {
                 <li><a href="#">La mia lista</a></li>
             </ul>
         </div>
+
+        <select name="Language" id="language" >
+            <option v-for="(lang,i) in db.langs" :key="i"  :value="`${lang.iso_639_1}`">{{ lang.english_name }}</option>
+        </select>
 
         <div class="search">
             <input type="text" @keyup.enter="getResponse()" v-model="query">

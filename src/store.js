@@ -7,6 +7,8 @@ export const db = reactive({
     serieTv:[],
     hideTv: false,
     hideFilm: false,
+    langs:[],
+    pages:0,
     // countFilm:0,
     // countSerie:0,
     // feedbackFilm:0,
