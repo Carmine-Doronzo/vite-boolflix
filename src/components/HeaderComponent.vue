@@ -21,12 +21,12 @@ export default {
         getMovie() {
             if (this.query === '') {
                 let lang = document.getElementById('language').value
-                this.movie = []
+                
                 axios.get('https://api.themoviedb.org/3/discover/movie', {
                     params:
                     {
                         api_key: this.db.apiKey,
-                        query: this.query,
+                        //query: this.query,
                         language: 'it',
                         with_original_language: lang.toLowerCase(),
 
@@ -80,7 +80,7 @@ export default {
             }
 
             else {
-                this.movie = []
+                
                 axios.get('https://api.themoviedb.org/3/search/movie', {
                     params:
                     {
@@ -111,13 +111,14 @@ export default {
         },
 
             getTvSeries() {
+                if (this.query === '') {
                 let lang = document.getElementById('language').value
 
                 axios.get('https://api.themoviedb.org/3/discover/tv', {
                     params:
                     {
                         api_key: this.db.apiKey,
-                        query: this.query,
+                        //query: this.query,
                         language: 'it',
                         with_original_language: lang.toLowerCase(),
 
@@ -164,7 +165,61 @@ export default {
 
 
 
+                })}else{
+                    axios.get('https://api.themoviedb.org/3/search/tv', {
+                    params:
+                    {
+                        api_key: this.db.apiKey,
+                        query: this.query,
+                        language: 'it',
+                        //with_original_language: lang.toLowerCase(),
+
+                    }
+                }).then((resTv) => {
+
+                    //this.db.serieTv = resTv.data.results
+
+                    //this.db.feedbackSerie = resTv.data.results.length
+                    // for(let i = 0; i < resTv.data.results.length; i++){
+                    //     this.db.countSerie++
+                    // }
+                    this.db.serieTv = []
+                    for (let i = 0; i < resTv.data.results.length; i++) {
+                        //console.log(resTv)
+                        let results = resTv.data.results[i]
+                        let title = results.name
+                        let originalTitle = results.original_name
+                        let language = results.original_language
+                        let vote = results.vote_average
+                        let imgPath = results.poster_path
+                        let id = results.id
+                        let overView = results.overview
+                        this.db.serieTv.push({ title, originalTitle, language, vote, imgPath, id, overView })
+
+                    }
+
+                    // for (let i = 0; i < this.db.serieTv.length; i++) {
+                    // axios.get(`https://api.themoviedb.org/3/tv/${this.db.serieTv[i].id}/credits`,
+                    //     {
+                    //         params: {
+                    //             api_key: this.db.apiKey,
+                    //             language: this.db.serieTv[i].language
+                    //         }
+
+                    //     }
+                    // ).then((resAct) => {
+                    //     console.log(resAct.data.cast)
+                    // })
+
+
+
+                    //this.tvSeries = []
+
+
+
                 })
+
+                }
             },
 
 
