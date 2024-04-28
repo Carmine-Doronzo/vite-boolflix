@@ -9,8 +9,7 @@ export const db = reactive({
     hideFilm: false,
     langs:[],
     pages:0,
-    actorsListMovie:[],
-    actorsListTv:[],
+    actorsList:[],
     apiKey:'c7878d69e7bf01e812daf32433b1bb50'
 })
 

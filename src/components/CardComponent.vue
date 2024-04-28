@@ -25,9 +25,20 @@ export default {
 
                     }
                 ).then((resAct) => {
-                    console.log(resAct.data.cast)
+                    this.db.actorsList=[]
+                    let result = resAct.data.cast
+                    console.log(result)
+                    for (let i = 0; i < result.length; i++) {
+                        let idAct = result[i].id
+                        let characterAct = result[i].character
+                        let nameAct = result[i].name
+                        let originaNameAct = result[i].original_name
+                        let imgPathAct = `https://image.tmdb.org/t/p/w185${result[i].profile_path}` 
+                        this.db.actorsList.push({ idAct, characterAct, nameAct, originaNameAct, imgPathAct })
+                    }
+                    //this.db.serieTv.push(this.db.actorsList)
                 })
-            }else{
+            } else {
                 axios.get(`https://api.themoviedb.org/3/movie/${this.Item.id}/credits`,
                     {
                         params: {
@@ -37,7 +48,18 @@ export default {
 
                     }
                 ).then((resAct) => {
-                    console.log(resAct.data.cast)
+                    //console.log(resAct.data.cast)
+                    this.db.actorsList=[]
+                    let result = resAct.data.cast
+                    for (let i = 0; i < result.length; i++) {
+                        let idAct = result[i].id
+                        let characterAct = result[i].character
+                        let nameAct = result[i].name
+                        let originaNameAct = result[i].original_name
+                        let imgPathAct = `https://image.tmdb.org/t/p/w185/${result[i].profile_path}` 
+                        this.db.actorsList.push({ idAct, characterAct, nameAct, originaNameAct, imgPathAct })
+                    }
+                    //is.db.film.push(this.db.actorsList)
                 })
 
             }
@@ -100,7 +122,14 @@ export default {
             <div id="rating-">Voto: {{ rating }}</div>
             <p>{{ Item.overView }} </p>
             <button @click="getActors()">attori</button>
+            <div v-for="(actor,i) in db.actorsList" :key="db.actorsList[i].id" class="actors">
+                <p>Personaggio: {{ actor.characterAct }}</p>
+                <p>Nome: {{ actor.nameAct }}</p>
+                <p>Nome completo: {{ actor.originaNameAct }}</p>
+                <img :src="`${actor.imgPathAct}` !== `https://image.tmdb.org/t/p/w185/null` ? `${actor.imgPathAct}` : '/img/imgNd.png'" width="185" height="250" alt="">
+            </div>
         </div>
+
     </li>
 
 
@@ -114,5 +143,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-@use '../style/partials/card.scss'
+@use '../style/partials/card.scss';
+
+.actors {}
 </style>
