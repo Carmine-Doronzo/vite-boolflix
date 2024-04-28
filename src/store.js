@@ -7,6 +7,7 @@ export const db = reactive({
     serieTv:[],
     hideTv: false,
     hideFilm: false,
+    hideActors:false,
     langs:[],
     pages:0,
     actorsList:[],
