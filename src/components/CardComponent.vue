@@ -59,6 +59,7 @@ export default {
             <p>Lingua: <img :src="`/icon/${Item.language}.svg`" :alt="`${Item.language}`" width="15" height="15"></p>
             <div id="rating-">Voto: {{ rating }}</div>
             <p>{{ Item.overView }} </p> 
+            <button>attori</button>
         </div>
     </li>
 

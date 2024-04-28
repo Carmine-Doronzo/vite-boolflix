@@ -19,205 +19,239 @@ export default {
 
     methods: {
         getMovie() {
-            let lang = document.getElementById('language').value
-            this.movie = []
-            axios.get('https://api.themoviedb.org/3/discover/movie', {
-                params:
-                {
-                    api_key: this.db.apiKey,
-                    query: this.query,
-                    language:'it',
-                    with_original_language:lang.toLowerCase(),
-                    
-                }
-            }).then((res) => {
-                //this.db.film = res.data.results
-                //this.db.feedbackFilm = res.data.results.length
-                // for(let i = 0; i < res.data.results.length; i++){
-                //     this.db.countFilm++
-                // }
-                this.db.film = []
-                for (let i = 0; i < res.data.results.length; i++) {
-                    //console.log(res.data.results)
-                    let results = res.data.results[i]
-                    let title = results.title
-                    let originalTitle = results.original_title
-                    let language = results.original_language
-                    let vote = results.vote_average
-                    let imgPath = results.poster_path
-                    let id = results.id
-                    let overView = results.overview
-                    this.db.film.push({ title, originalTitle, language, vote, imgPath, id, overView })
+            if (this.query === '') {
+                let lang = document.getElementById('language').value
+                this.movie = []
+                axios.get('https://api.themoviedb.org/3/discover/movie', {
+                    params:
+                    {
+                        api_key: this.db.apiKey,
+                        query: this.query,
+                        language: 'it',
+                        with_original_language: lang.toLowerCase(),
 
-                }
-                // for (let i = 0; i < this.db.film.length; i++) {
-                //     axios.get(`https://api.themoviedb.org/3/movies/${this.db.film[i].id}/credits`,
-                //         {
-                //             params: {
-                //                 api_key: this.db.apiKey,
-                //                 language: this.db.film[i].language
-                //             }
+                    }
+                }).then((res) => {
+                    //this.db.film = res.data.results
+                    //this.db.feedbackFilm = res.data.results.length
+                    // for(let i = 0; i < res.data.results.length; i++){
+                    //     this.db.countFilm++
+                    // }
+                    this.db.film = []
+                    for (let i = 0; i < res.data.results.length; i++) {
+                        //console.log(res.data.results)
+                        let results = res.data.results[i]
+                        let title = results.title
+                        let originalTitle = results.original_title
+                        let language = results.original_language
+                        let vote = results.vote_average
+                        let imgPath = results.poster_path
+                        let id = results.id
+                        let overView = results.overview
+                        this.db.film.push({ title, originalTitle, language, vote, imgPath, id, overView })
 
-                //         }
-                //     ).then((resAct) => {
-                //         console.log(resAct.data.cast)
-                //     })
+                    }
 
-                //}
+                    // for (let i = 0; i < this.db.film.length; i++) {
+                    //     axios.get(`https://api.themoviedb.org/3/movies/${this.db.film[i].id}/credits`,
+                    //         {
+                    //             params: {
+                    //                 api_key: this.db.apiKey,
+                    //                 language: this.db.film[i].language
+                    //             }
 
-                //this.movie = []
-                //  this.titles.push(results.title)
-                //  this.originalTitles.push(results.original_title)
-                //  this.languages.push(results.original_language)
-                //  this.votes.push(results.vote_count)
+                    //         }
+                    //     ).then((resAct) => {
+                    //         console.log(resAct.data.cast)
+                    //     })
 
-                //console.log(this.db.film)
-                // }
+                    //}
 
-            })
-        },
-        getTvSeries() {
-            let lang = document.getElementById('language').value
+                    //this.movie = []
+                    //  this.titles.push(results.title)
+                    //  this.originalTitles.push(results.original_title)
+                    //  this.languages.push(results.original_language)
+                    //  this.votes.push(results.vote_count)
 
-            axios.get('https://api.themoviedb.org/3/discover/tv', {
-                params:
-                {
-                    api_key: this.db.apiKey,
-                    query: this.query,
-                    language:'it',
-                    with_original_language:lang.toLowerCase(),
-                    
-                }
-            }).then((resTv) => {
+                    //console.log(this.db.film)
+                    // }
 
-                //this.db.serieTv = resTv.data.results
+                })
+            }
 
-                //this.db.feedbackSerie = resTv.data.results.length
-                // for(let i = 0; i < resTv.data.results.length; i++){
-                //     this.db.countSerie++
-                // }
-                this.db.serieTv = []
-                for (let i = 0; i < resTv.data.results.length; i++) {
-                    //console.log(resTv)
-                    let results = resTv.data.results[i]
-                    let title = results.name
-                    let originalTitle = results.original_name
-                    let language = results.original_language
-                    let vote = results.vote_average
-                    let imgPath = results.poster_path
-                    let id = results.id
-                    let overView = results.overview
-                    this.db.serieTv.push({ title, originalTitle, language, vote, imgPath, id, overView })
+            else {
+                this.movie = []
+                axios.get('https://api.themoviedb.org/3/search/movie', {
+                    params:
+                    {
+                        api_key: this.db.apiKey,
+                        query: this.query,
+                        language: 'it',
+                        //with_original_language: lang.toLowerCase(),
 
-                }
+                    }
+                }).then((res) => {
 
-                // for (let i = 0; i < this.db.serieTv.length; i++) {
-                // axios.get(`https://api.themoviedb.org/3/tv/${this.db.serieTv[i].id}/credits`,
-                //     {
-                //         params: {
-                //             api_key: this.db.apiKey,
-                //             language: this.db.serieTv[i].language
-                //         }
+                    this.db.film = []
+                    for (let i = 0; i < res.data.results.length; i++) {
 
-                //     }
-                // ).then((resAct) => {
-                //     console.log(resAct.data.cast)
-                // })
+                        let results = res.data.results[i]
+                        let title = results.title
+                        let originalTitle = results.original_title
+                        let language = results.original_language
+                        let vote = results.vote_average
+                        let imgPath = results.poster_path
+                        let id = results.id
+                        let overView = results.overview
+                        this.db.film.push({ title, originalTitle, language, vote, imgPath, id, overView })
 
-
-
-                //this.tvSeries = []
-
-
-
-            })
+                    }
+                })
+            }
         },
 
+            getTvSeries() {
+                let lang = document.getElementById('language').value
+
+                axios.get('https://api.themoviedb.org/3/discover/tv', {
+                    params:
+                    {
+                        api_key: this.db.apiKey,
+                        query: this.query,
+                        language: 'it',
+                        with_original_language: lang.toLowerCase(),
+
+                    }
+                }).then((resTv) => {
+
+                    //this.db.serieTv = resTv.data.results
+
+                    //this.db.feedbackSerie = resTv.data.results.length
+                    // for(let i = 0; i < resTv.data.results.length; i++){
+                    //     this.db.countSerie++
+                    // }
+                    this.db.serieTv = []
+                    for (let i = 0; i < resTv.data.results.length; i++) {
+                        //console.log(resTv)
+                        let results = resTv.data.results[i]
+                        let title = results.name
+                        let originalTitle = results.original_name
+                        let language = results.original_language
+                        let vote = results.vote_average
+                        let imgPath = results.poster_path
+                        let id = results.id
+                        let overView = results.overview
+                        this.db.serieTv.push({ title, originalTitle, language, vote, imgPath, id, overView })
+
+                    }
+
+                    // for (let i = 0; i < this.db.serieTv.length; i++) {
+                    // axios.get(`https://api.themoviedb.org/3/tv/${this.db.serieTv[i].id}/credits`,
+                    //     {
+                    //         params: {
+                    //             api_key: this.db.apiKey,
+                    //             language: this.db.serieTv[i].language
+                    //         }
+
+                    //     }
+                    // ).then((resAct) => {
+                    //     console.log(resAct.data.cast)
+                    // })
 
 
-    show() {
-        this.db.hideTv = false
-        this.db.hideFilm = false
-    },
-    hideFilm(){
-        this.db.hideFilm = true
-            this.db.hideTv = false
-        // if(this.db.hideFilm === false ){
 
-        //     this.db.hideFilm = true
-        //     this.db.hideTv = false
-        // }else if(this.db.hideTv === false){
-        //     this.db.hideFilm = false
-        //     this.db.hideTv = true
+                    //this.tvSeries = []
 
-        // }
 
-    },
-    hideTv(){
-        this.db.hideFilm = false
-            this.db.hideTv = true
 
-    },
+                })
+            },
 
-    getLanguage(){
-        axios.get('https://api.themoviedb.org/3/configuration/languages',{
-            params:{
-                api_key:this.db.apiKey
+
+
+            show() {
+                this.db.hideTv = false
+                this.db.hideFilm = false
+            },
+            hideFilm() {
+                this.db.hideFilm = true
+                this.db.hideTv = false
+                // if(this.db.hideFilm === false ){
+
+                //     this.db.hideFilm = true
+                //     this.db.hideTv = false
+                // }else if(this.db.hideTv === false){
+                //     this.db.hideFilm = false
+                //     this.db.hideTv = true
+
+                // }
+
+            },
+            hideTv() {
+                this.db.hideFilm = false
+                this.db.hideTv = true
+
+            },
+
+            getLanguage() {
+                axios.get('https://api.themoviedb.org/3/configuration/languages', {
+                    params: {
+                        api_key: this.db.apiKey
+                    }
+                }).then((lang) => {
+
+                    for (let i = 0; i < lang.data.length; i++) {
+
+                        this.db.langs.push(lang.data[i])
+
+                    }
+                })
+            },
+
+
+
+            getResponse() {
+
+
+                this.getMovie()
+
+                this.getTvSeries()
+
+                //this.getActors()
+
+                this.query = ''
+
+                //console.log('Titoli', this.titles)
+                //console.log('Titoli originali', this.originalTitles)
+                //console.log('Lingua', this.languages)
+                //console.log('Voti', this.votes)
+                // this.query = db.query
+                // this.titles = []
+                // this.originalTitles =[]
+                // this.languages =[]
+                // this.votes = []
+            },
+            randomQuery() {
+                const caracter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'z', 'x', 'y', 'j']
+                const i = Math.floor(Math.random() * caracter.length)
+                return caracter[i]
             }
-        }).then((lang) =>{
-            
-            for(let i = 0; i < lang.data.length; i++){
-            
-            this.db.langs.push(lang.data[i])
-            
-            }
-        })
-    },
+        },
+
+        mounted() {
+
+            this.query = this.randomQuery()
 
 
+            this.getResponse()
 
-    getResponse() {
+            this.getLanguage()
 
+            this.query = ''
 
-        this.getMovie()
+        }
 
-        this.getTvSeries()
-
-        //this.getActors()
-
-        this.query = ''
-
-        //console.log('Titoli', this.titles)
-        //console.log('Titoli originali', this.originalTitles)
-        //console.log('Lingua', this.languages)
-        //console.log('Voti', this.votes)
-        // this.query = db.query
-        // this.titles = []
-        // this.originalTitles =[]
-        // this.languages =[]
-        // this.votes = []
-    },
-    randomQuery() {
-        const caracter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'z', 'x', 'y', 'j']
-        const i = Math.floor(Math.random() * caracter.length)
-        return caracter[i]
     }
-},
-
-mounted() {
-
-    this.query = this.randomQuery()
-
-
-    this.getResponse()
-
-    this.getLanguage()
-
-    this.query = ''
-
-}
-
-}
 </script>
 
 <template>
@@ -235,8 +269,8 @@ mounted() {
             </ul>
         </div>
 
-        <select name="Language" id="language" >
-            <option v-for="(lang,i) in db.langs" :key="i"  :value="`${lang.iso_639_1}`">{{ lang.english_name }}</option>
+        <select name="Language" id="language">
+            <option v-for="(lang, i) in db.langs" :key="i" :value="`${lang.iso_639_1}`">{{ lang.english_name }}</option>
         </select>
 
         <div class="search">
