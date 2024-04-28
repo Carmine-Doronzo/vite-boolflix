@@ -1,16 +1,49 @@
 <script>
-//import { db } from '../store.js'
+import { db } from '../store.js'
+import axios from 'axios'
 export default {
-    // data() {
-    //     return {
-            
-             
+    data() {
+        return {
+            db,
 
-    //     
-    // },
-    props: {
-        Item: { type: Object },
-        // tvSeriesItem: { type: Object }
+
+
+        }
+    },
+
+    methods: {
+        getActors() {
+
+
+            if (this.Item.actors === 0) {
+                axios.get(`https://api.themoviedb.org/3/tv/${this.Item.id}/credits`,
+                    {
+                        params: {
+                            api_key: this.db.apiKey,
+                            language: this.Item.language
+                        }
+
+                    }
+                ).then((resAct) => {
+                    console.log(resAct.data.cast)
+                })
+            }else{
+                axios.get(`https://api.themoviedb.org/3/movie/${this.Item.id}/credits`,
+                    {
+                        params: {
+                            api_key: this.db.apiKey,
+                            language: this.Item.language
+                        }
+
+                    }
+                ).then((resAct) => {
+                    console.log(resAct.data.cast)
+                })
+
+            }
+
+
+        },
     },
     computed: {
         rating() {
@@ -45,7 +78,14 @@ export default {
         // console.log(this.Item.vote)
 
     },
+    props: {
+        Item: { type: Object },
+        // tvSeriesItem: { type: Object }
+    }
 }
+
+
+
 </script>
 
 <template>
@@ -58,8 +98,8 @@ export default {
             <p>Titolo originale: {{ Item.originalTitle }}</p>
             <p>Lingua: <img :src="`/icon/${Item.language}.svg`" :alt="`${Item.language}`" width="15" height="15"></p>
             <div id="rating-">Voto: {{ rating }}</div>
-            <p>{{ Item.overView }} </p> 
-            <button>attori</button>
+            <p>{{ Item.overView }} </p>
+            <button @click="getActors()">attori</button>
         </div>
     </li>
 
