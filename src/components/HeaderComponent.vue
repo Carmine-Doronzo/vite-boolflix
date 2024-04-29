@@ -7,10 +7,7 @@ export default {
         return {
             db,
             query: '',
-            //hide:db.hide
 
-            // movie: db.film,
-            // tvSeries: db.serieTv
 
 
         }
@@ -30,14 +27,12 @@ export default {
                         //query: this.query,
                         language: 'it',
                         with_original_language: lang.toLowerCase(),
-
+                        page:3
                     }
                 }).then((res) => {
-                    //this.db.film = res.data.results
-                    //this.db.feedbackFilm = res.data.results.length
-                    // for(let i = 0; i < res.data.results.length; i++){
-                    //     this.db.countFilm++
-                    // }
+                    this.db.pagesArrayMovie = []
+                    this.db.pagesMovie = res.data.total_pages
+
                     this.db.film = []
                     for (let i = 0; i < res.data.results.length; i++) {
                         //console.log(res.data.results)
@@ -54,29 +49,7 @@ export default {
 
                     }
 
-                    // for (let i = 0; i < this.db.film.length; i++) {
-                    //     axios.get(`https://api.themoviedb.org/3/movies/${this.db.film[i].id}/credits`,
-                    //         {
-                    //             params: {
-                    //                 api_key: this.db.apiKey,
-                    //                 language: this.db.film[i].language
-                    //             }
-
-                    //         }
-                    //     ).then((resAct) => {
-                    //         console.log(resAct.data.cast)
-                    //     })
-
-                    //}
-
-                    //this.movie = []
-                    //  this.titles.push(results.title)
-                    //  this.originalTitles.push(results.original_title)
-                    //  this.languages.push(results.original_language)
-                    //  this.votes.push(results.vote_count)
-
-                    //console.log(this.db.film)
-                    // }
+                    this.getArrayPagesMovie()
 
                 })
             }
@@ -87,13 +60,15 @@ export default {
                     params:
                     {
                         api_key: this.db.apiKey,
-                        query: this.query,
+                        query: this.db.query,
                         language: 'it',
                         //with_original_language: lang.toLowerCase(),
-
+                        page:3
                     }
                 }).then((res) => {
-
+                    this.db.pagesArrayMovie = []
+                    this.db.pagesMovie = res.data.total_pages
+                    //console.log(this.db.pagesMovie)
                     this.db.film = []
                     for (let i = 0; i < res.data.results.length; i++) {
 
@@ -109,9 +84,12 @@ export default {
                         this.db.film.push({ title, originalTitle, language, vote, imgPath, id, overView, actors })
 
                     }
+                    this.getArrayPagesMovie()
                 })
             }
         },
+
+
 
         getTvSeries() {
             let lang = document.getElementById('language').value
@@ -125,11 +103,13 @@ export default {
                         //query: this.query,
                         language: 'it',
                         with_original_language: lang.toLowerCase(),
+                        page:3
 
                     }
                 }).then((resTv) => {
-
-
+                    this.db.pagesArraySerie = []
+                    this.db.pagesSerie = resTv.data.total_pages
+                    //console.log(resTv)
                     this.db.serieTv = []
                     for (let i = 0; i < resTv.data.results.length; i++) {
                         //console.log(resTv)
@@ -145,23 +125,8 @@ export default {
                         this.db.serieTv.push({ title, originalTitle, language, vote, imgPath, id, overView, actors })
 
                     }
+                    this.getArrayPagesSerie()
 
-                    // for (let i = 0; i < this.db.serieTv.length; i++) {
-                    // axios.get(`https://api.themoviedb.org/3/tv/${this.db.serieTv[i].id}/credits`,
-                    //     {
-                    //         params: {
-                    //             api_key: this.db.apiKey,
-                    //             language: this.db.serieTv[i].language
-                    //         }
-
-                    //     }
-                    // ).then((resAct) => {
-                    //     console.log(resAct.data.cast)
-                    // })
-
-
-
-                    //this.tvSeries = []
 
 
 
@@ -172,14 +137,15 @@ export default {
                     params:
                     {
                         api_key: this.db.apiKey,
-                        query: this.query,
+                        query: this.db.query,
                         language: 'it',
                         //with_original_language: lang.toLowerCase(),
-
+                        page:3
                     }
                 }).then((resTv) => {
-
-
+                    this.db.pagesArraySerie = []
+                    this.db.pagesSerie = resTv.data.total_pages
+                    //console.log(resTv.data)
                     this.db.serieTv = []
                     for (let i = 0; i < resTv.data.results.length; i++) {
                         //console.log(resTv)
@@ -195,41 +161,11 @@ export default {
                         this.db.serieTv.push({ title, originalTitle, language, vote, imgPath, id, overView, actors })
 
                     }
-
-
-
-
-
-                    //this.tvSeries = []
-
-
-
+                    this.getArrayPagesSerie()
                 })
 
             }
         },
-        // getActors() {
-        //     if (this.db.film.actors === true) {
-        //         for (let i = 0; i < this.db.film.length; i++) {
-        //             axios.get(`https://api.themoviedb.org/3/tv/${this.db.serieTv[i].id}/credits`,
-        //                 {
-        //                     params: {
-        //                         api_key: this.db.apiKey,
-        //                         language: this.db.serieTv[i].language
-        //                     }
-
-        //                 }
-        //             ).then((resAct) => {
-        //                 console.log(resAct.data.cast)
-        //             })
-        //         }
-        //     }
-        // },
-
-
-
-
-
         show() {
             this.db.hideTv = false
             this.db.hideFilm = false
@@ -261,13 +197,63 @@ export default {
                 }
             })
         },
+        getArrayPagesMovie() {
+            const max = this.db.pagesMovie;
+        
+
+            
+
+            while (this.db.pagesArrayMovie.length < max) {
+                const page = Math.floor(Math.random() * max) + 1;
+
+                let pagePresent = false;
+
+                for (let i = 0; i < this.db.pagesArrayMovie.length; i++) {
+                    if (this.db.pagesArrayMovie[i] === page) {
+                        pagePresent = true
+                    }
+                }
+
+                if (pagePresent === false) {
+                    this.db.pagesArrayMovie.push(page);
+                }
+            }
+        },
+        getArrayPagesSerie() {
+            const max = this.db.pagesSerie;
+        
+
+            
+
+            while (this.db.pagesArraySerie.length < max) {
+                const page = Math.floor(Math.random() * max) + 1;
+
+                let pagePresent = false;
+
+                for (let i = 0; i < this.db.pagesArraySerie.length; i++) {
+                    if (this.db.pagesArraySerie[i] === page) {
+                        pagePresent = true
+                    }
+                }
+
+                if (pagePresent === false) {
+                    this.db.pagesArraySerie.push(page);
+                }
+            }
+
+            //console.log(this.db.pagesArraySerie.sort(this.compare))
+        },
+
+        compare(a,b){
+            return a-b
+        },
 
 
 
         getResponse() {
-            if(this.query === ''){
-                this.query =this.randomQuery()
-            
+            if (this.db.query === '') {
+                this.db.query = this.randomQuery()
+
             }
             this.show()
 
@@ -278,7 +264,7 @@ export default {
 
             //this.getActors()
 
-            this.query = ''
+            //this.query = ''
 
 
         },
@@ -291,14 +277,14 @@ export default {
 
     mounted() {
 
-        this.query = this.randomQuery()
+        this.db.query = this.randomQuery()
 
 
         this.getResponse()
 
         this.getLanguage()
 
-        this.query = ''
+        //this.query = ''
 
         //this.getActors()
 

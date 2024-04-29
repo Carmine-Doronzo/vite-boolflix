@@ -51,7 +51,7 @@ export default {
 
                     }
                 ).then((resAct) => {
-                    //console.log(resAct.data.cast)
+                    
                     this.db.actorsList = []
                     let result = resAct.data.cast
                     for (let i = 0; i < result.length; i++) {
@@ -62,8 +62,7 @@ export default {
                         let imgPathAct = `https://image.tmdb.org/t/p/w185/${result[i].profile_path}`
                         this.db.actorsList.push({ idAct, characterAct, nameAct, originaNameAct, imgPathAct })
                     }
-                    //this.db.hideActors = true
-                    //is.db.film.push(this.db.actorsList)
+                   
                 })
 
             }
@@ -86,29 +85,17 @@ export default {
                 this.Item.vote += '☆';
             }
 
-            //console.log(this.Item.vote)
+            
             return this.Item.vote
         }
     },
     mounted() {
-        console.log(this.db.hideActors)
-        // let rating = document.getElementById('rating-')
-
-        // const ratingVote = this.Item.vote / 2;
-        // for (let i = 1; i <= ratingVote; i++) {
-        //     rating.innerHTML += '&#9733;';
-        // }
-
-        // for (let i = ratingVote; i < 5; i++) {
-        //     rating.innerHTML += '&#9734;';
-        // }
-
-        // console.log(this.Item.vote)
+   
 
     },
     props: {
         Item: { type: Object },
-        // tvSeriesItem: { type: Object }
+        
     }
 }
 
@@ -136,12 +123,7 @@ export default {
 
 
 
-    <!-- <li>
-        {{ tvSeries.titleTv }}
-        {{ tvSeries.originalTitleTv }}
-        {{ tvSeries.languageTv }}
-        {{ tvSeries.voteTv }}
-    </li>  -->
+    
 </template>
 
 <style lang="scss" scoped>
