@@ -20,7 +20,7 @@ export default {
     methods: {
         getMovie() {
             let lang = document.getElementById('language').value
-            if (this.query === '') {
+            if (lang !== '1') {
 
 
                 axios.get('https://api.themoviedb.org/3/discover/movie', {
@@ -115,7 +115,7 @@ export default {
 
         getTvSeries() {
             let lang = document.getElementById('language').value
-            if (this.query === '') {
+            if (lang !== '1') {
 
 
                 axios.get('https://api.themoviedb.org/3/discover/tv', {
