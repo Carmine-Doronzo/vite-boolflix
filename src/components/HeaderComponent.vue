@@ -233,6 +233,7 @@ export default {
         show() {
             this.db.hideTv = false
             this.db.hideFilm = false
+            this.db.hideActors = false
         },
         hideFilm() {
             this.db.hideFilm = true
@@ -264,6 +265,11 @@ export default {
 
 
         getResponse() {
+            if(this.query === ''){
+                this.query =this.randomQuery()
+            
+            }
+            this.show()
 
 
             this.getMovie()

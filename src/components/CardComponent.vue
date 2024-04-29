@@ -14,7 +14,9 @@ export default {
     methods: {
         getActors() {
             this.db.hideActors = true
-            console.log(this.db.hideActors)
+            //console.log(this.db.hideActors)
+            this.db.hideFilm = true
+            this.db.hideTv = true
             if (this.Item.actors === 0) {
                 axios.get(`https://api.themoviedb.org/3/tv/${this.Item.id}/credits`,
                     {
