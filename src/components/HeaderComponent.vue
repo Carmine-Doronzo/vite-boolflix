@@ -27,7 +27,7 @@ export default {
                         //query: this.query,
                         language: 'it',
                         with_original_language: lang.toLowerCase(),
-                        page:3
+                        //page:3
                     }
                 }).then((res) => {
                     this.db.pagesArrayMovie = []
@@ -63,7 +63,7 @@ export default {
                         query: this.db.query,
                         language: 'it',
                         //with_original_language: lang.toLowerCase(),
-                        page:3
+                        //page:3
                     }
                 }).then((res) => {
                     this.db.pagesArrayMovie = []
@@ -103,7 +103,7 @@ export default {
                         //query: this.query,
                         language: 'it',
                         with_original_language: lang.toLowerCase(),
-                        page:3
+                        //page:3
 
                     }
                 }).then((resTv) => {
@@ -140,7 +140,7 @@ export default {
                         query: this.db.query,
                         language: 'it',
                         //with_original_language: lang.toLowerCase(),
-                        page:3
+                        //page:3
                     }
                 }).then((resTv) => {
                     this.db.pagesArraySerie = []
@@ -314,7 +314,7 @@ export default {
         </select>
 
         <div class="search">
-            <input type="text" @keyup.enter="getResponse()" v-model="query">
+            <input type="text" @keyup.enter="getResponse()" v-model="db.query">
             <button @click="getResponse()" class="start-search">Cerca</button>
         </div>
 

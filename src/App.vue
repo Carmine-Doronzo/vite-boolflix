@@ -193,7 +193,7 @@ export default {
       <ul class="row">
         <CardComponent v-for="(filmItem, i) in db.film" :key="db.id" :Item="filmItem" />
       </ul>
-      <ul>
+      <ul class="page-list">
         <li v-for="page in db.pagesArrayMovie.sort(function (a, b) { return a - b })"><a href="#" @click="getMovie(page)">{{ page }}</a></li>
       </ul>
     </div>
@@ -202,7 +202,7 @@ export default {
       <ul class="row">
         <CardComponent v-for="(tvSeriesItem, i) in db.serieTv" :key="db.id" :Item="tvSeriesItem" />
       </ul>
-      <ul>
+      <ul class="page-list">
         <li v-for="page in db.pagesArraySerie.sort(function (a, b) { return a - b })"><a href="#"
             @click="getTvSeries(page)">{{ page }}</a></li>
       </ul>
@@ -258,6 +258,12 @@ export default {
 
   //justify-content: center;
   //align-items: center;
+}
+
+.page-list{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .card_act {
